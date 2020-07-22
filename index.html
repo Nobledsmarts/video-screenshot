@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="screenshot.js"></script>
+    <title>compress image with javascript</title>
+</head>
+<body>
+    <p> file </p>
+    <input id="inputFile" type="file">
+    <br>
+    <p> CAPTURE AREA</p>
+    <select id="captureArea">
+        <option value="0"> beginning </option>
+        <option value="1"> middle </option>
+        <option value="2"> end </option>
+    </select>
+    <br>
+    
+    <div align="center" style="display : flex; justify-content:center; flex-wrap: wrap">
+        <div style="width:600px">
+            <div>
+                <h4>VIDEO</h4> 
+            </div>
+            <div id="preview1">
+                <img class="spinner" src="spinner.gif">
+            </div>
+            <button onclick="getPlayingScreenshot()"> take screenshot </button>
+        </div>
+        <div style="width:600px">
+            <div>
+                <h4>SCREENSHOT</h4> 
+            </div>
+            <img class="spinner" src="spinner.gif">
+            <img id="preview2">
+        </div>
+    </div>
+    <script>
+        let preview1 = document.getElementById('preview1');
+        let preview2 = document.getElementById('preview2');
+
+        document.getElementById('inputFile').addEventListener('change', function (event) {
+            handleScreenshot(this);
+        });
+        document.getElementById('captureArea').addEventListener('change', function (event) {
+            let inputElement = document.getElementById('inputFile');
+            handleScreenshot(inputElement);
+        });
+        let handleScreenshot = (event) => {
+            let video = document.getElementsByTagName('video')[0];
+            video && showSpinner() && preview1.removeChild(video);
+            let captureArea = +document.getElementById('captureArea').value;
+            getScreenshot(event, captureArea);
+        }
+        let showSpinner = () => {
+           return document.getElementsByClassName('spinner')[0].style.display = 'initial';
+        }
+        let hideSpinners = () => {
+            [... document.getElementsByClassName('spinner')].forEach((spinner) => {
+                spinner.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
