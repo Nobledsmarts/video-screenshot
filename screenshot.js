@@ -3,6 +3,7 @@
 *  (c) Richard franklin c
 *
 */
+
 let getPlayingScreenshot = (event) => {
     let video = document.getElementsByTagName('video')[0];
     if(video){
@@ -19,7 +20,6 @@ let getPlayingScreenshot = (event) => {
                 type : 'image/jpeg',
                 lastModified : Date.now(),
             });
-            // new file size (in kiloBytes)
             const reader2 = new FileReader();
             reader2.addEventListener('loadend', (e) => {
                 const newFileSrc = e.target.result;
@@ -29,7 +29,6 @@ let getPlayingScreenshot = (event) => {
         }, 'image/jpeg', REDUCE_RATIO);
     }
 }
-
 
 let getScreenshot = async (inputElement, captureArea) => {
     const file = inputElement.files[0];
@@ -49,7 +48,7 @@ let getScreenshot = async (inputElement, captureArea) => {
                 video.currentTime = captureArea == 0 ? 10 : ( captureArea == 1 ? video.duration / 2 : video.duration - 10);
             }
         
-        video.oncanplay = () => {
+             video.oncanplay = () => {
                 const canvas = document.createElement('canvas');
                 canvas.width = video.videoWidth;
                 canvas.height = video.videoHeight;
