@@ -29,7 +29,7 @@ let getPlayingScreenshot = (event) => {
         }, 'image/jpeg', REDUCE_RATIO);
     }
 }
-//get screenshoy from input
+//get screenshot from input
 let getScreenshot = (inputElement, captureArea) => {
     const file = inputElement.files[0];
     if(file){
